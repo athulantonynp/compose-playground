@@ -15,6 +15,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
@@ -26,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import app.athul.composibles.ui.theme.ComposiblesTheme
 import app.athul.composibles.ui.widgets.FixedHeightBar
+import app.athul.composibles.utils.Utils
 
 class MainActivity : ComponentActivity() {
     @ExperimentalUnitApi
@@ -65,37 +69,36 @@ fun Greeting() {
 @Composable
 fun ChartCard(){
 
-    Card(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 24.dp)
+            .background( Brush.horizontalGradient(
+                colors = listOf(
+                    Utils.getColor("#0f0c29"),
+                    Utils.getColor("#302b63"),
+                    Utils.getColor("#24243e")
+                )
+            ),
+                shape = RoundedCornerShape(16.dp)
+            )
             .clickable { },
-        elevation = 4.dp,
-        shape = RoundedCornerShape(8.dp)
     ){
         Column(
             modifier = Modifier.padding(15.dp)
         ) {
-            Text(
-                buildAnnotatedString {
-                    append("welcome to ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.W900, color = Color(0xFF4552B8))
-                    ) {
-                        append("Compose Statistics")
-                    }
-                }
-            )
+            Text(text="Hello World",color=Color.White)
 
             
             Row(horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Bottom,
                 modifier = Modifier.fillMaxWidth().padding(top = 24.dp)) {
-                FixedHeightBar(height = 80.dp,width = 24.dp)
-                FixedHeightBar(height = 40.dp,width = 24.dp)
-                FixedHeightBar(height = 120.dp,width = 24.dp)
-                FixedHeightBar(height = 140.dp,width = 24.dp)
-                FixedHeightBar(height = 100.dp,width = 24.dp)
-                FixedHeightBar(height = 90.dp,width = 24.dp)
+                FixedHeightBar(height = 80.dp,width = 16.dp)
+                FixedHeightBar(height = 40.dp,width = 16.dp)
+                FixedHeightBar(height = 120.dp,width = 16.dp)
+                FixedHeightBar(height = 140.dp,width = 16.dp)
+                FixedHeightBar(height = 100.dp,width = 16.dp)
+                FixedHeightBar(height = 90.dp,width = 16.dp)
             }
         }
     }
