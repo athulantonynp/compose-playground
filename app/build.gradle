@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+def keystorePropertiesFile = rootProject.file("keystore.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdk 30
@@ -45,6 +48,19 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    buildTypes{
+        release{
+            buildConfigField "String", "ANGEL_API", "\"${keystoreProperties['angel_broking_api_key']}\""
+            buildConfigField "String", "ANGEL_SECRET", "\"${keystoreProperties['angel_broking_secret_key']}\""
+            buildConfigField "String", "ANGEL_CLIENT_ID", "\"${keystoreProperties['angel_broking_client_id']}\""
+        }
+
+        debug{
+            buildConfigField "String", "ANGEL_API", "\"${keystoreProperties['angel_broking_api_key']}\""
+            buildConfigField "String", "ANGEL_SECRET", "\"${keystoreProperties['angel_broking_secret_key']}\""
+            buildConfigField "String", "ANGEL_CLIENT_ID", "\"${keystoreProperties['angel_broking_client_id']}\""
+        }
+    }
 }
 
 dependencies {
@@ -62,4 +78,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
 }

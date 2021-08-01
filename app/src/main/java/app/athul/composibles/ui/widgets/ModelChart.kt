@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import app.athul.composibles.utils.Utils
 
 @Composable
-fun FixedHeightBar(height:Dp,width:Dp){ Box(modifier = Modifier
+fun FixedHeightBar(height:Dp,width:Dp=16.dp){ Box(modifier = Modifier
         .background( Brush.verticalGradient(
             colors = listOf(
                 Utils.getColor("#fc4a1a"),

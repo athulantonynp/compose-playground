@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Composibles</string>
+    <string name="title_activity_canvas">CanvasActivity</string>
 </resources>
